@@ -23,7 +23,8 @@ class ResourceEventListener(DuctEventListener):
         super().__init__()
 
         self.handlers = {
-            "list_projects": []
+            "list_projects": [],
+            "create_project": [],
         }
 
 class MTurkEventListener(DuctEventListener):
