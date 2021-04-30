@@ -29,11 +29,11 @@ class MyPlayground:
         print(eid, data) 
 
     async def on_open(self):
-        await self.tutti.controllers["resource"].create_project("fugafuga")
+        await self.tutti.controllers["resource"].list_projects()
 
     async def main(self):
         self.tutti.add_onopen_handler(self.on_open)
-        self.tutti.event_listeners["resource"].on("create_project", self.on_list_projects)
+        self.tutti.event_listeners["resource"].on("list_projects", self.on_list_projects)
 
         await self.tutti.open("http://localhost/ducts/wsd")
 
