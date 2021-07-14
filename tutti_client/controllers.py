@@ -124,7 +124,7 @@ class MTurkController:
                                         { "QualificationTypeParams": QualificationTypeParams })
 
     async def list_workers(self):
-        await self.duct.send(self.duct.next_rid(), self.duct.EVENT["MTURK_LIST_WORKERS"], { "Platform": "MTurk" })
+        await self.duct.send(self.duct.next_rid(), self.duct.EVENT["LIST_WORKERS"], { "Platform": "MTurk" })
 
     async def list_workers_with_qualification_type(self, QualificationTypeId):
         await self.duct.send(self.duct.next_rid(), self.duct.EVENT["MTURK_LIST_WORKERS_WITH_QUALIFICATION_TYPE"],
