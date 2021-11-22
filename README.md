@@ -17,16 +17,19 @@ duct = TuttiDuct()
 
 For example, to obtain a list of your Tutti projects:
 
-```javascript
+```python
 import asyncio
 from tutti_client import TuttiDuct
+
+import logging
+logger = logging.getLogger(__name__)
 
 class MyPlayground:
     def __init__(self):
         self.tutti = TuttiDuct()
 
     async def catchall_event_handler(self, rid, eid, data):
-        print(eid, data) 
+        print(eid, data)
 
     async def on_open(self):
         await self.tutti.controllers["resource"].list_projects()
@@ -40,7 +43,7 @@ class MyPlayground:
     async def on_list_projects(self, data, is_error):
         if is_error:
             # handle error here
-            
+
             '''
             data = {
                 Status: "Error",
@@ -52,8 +55,9 @@ class MyPlayground:
             }
             '''
         else:
+            print(data)
             # do anything here
-            
+
             '''
             data = {
               Contents: {
@@ -65,7 +69,7 @@ class MyPlayground:
               }
             }
             '''
-            
+
 
 if __name__=="__main__":
     pg = MyPlayground()
