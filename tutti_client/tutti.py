@@ -84,6 +84,8 @@ class TuttiDuct(Duct):
                                     functools.partial(self.handle_for, "mturk", "delete_hits") )
         self.set_event_handler( self.EVENT["MTURK_CREATE_QUALIFICATION"],
                                     functools.partial(self.handle_for, "mturk", "create_qualification") )
+        self.set_event_handler( self.EVENT["MTURK_ASSOCIATE_QUALIFICATIONS_WITH_WORKERS"],
+                                    functools.partial(self.handle_for, "mturk", "associate_qualifications_with_workers") )
         self.set_event_handler( self.EVENT["LIST_WORKERS"],
                                     functools.partial(self.handle_for, "mturk", "list_workers") )
         self.set_event_handler( self.EVENT["MTURK_LIST_WORKERS_WITH_QUALIFICATION_TYPE"],

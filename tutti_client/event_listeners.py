@@ -63,6 +63,7 @@ class MTurkEventListener(DuctEventListener):
             "expire_hits": [],
             "delete_hits": [],
             "create_qualification": [],
+            "associate_qualifications_with_workers": [],
             "list_workers": [],
             "list_workers_with_qualification_type": [],
             "delete_qualifications": [],

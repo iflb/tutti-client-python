@@ -102,7 +102,7 @@ class MTurkController:
         await self.duct.send(self.duct.next_rid(), self.duct.EVENT["MTURK_CREATE_HITS_WITH_HIT_TYPE"], 
                                         { "ProjectName": ProjectName, "NumHITs": NumHITs,
                                           "CreateHITsWithHITTypeParams": CreateHITsWithHITTypeParams })
-        
+
     async def list_qualifications(self):
         await self.duct.send(self.duct.next_rid(), self.duct.EVENT["MTURK_LIST_QUALIFICATIONS"], None)
 
@@ -120,8 +120,12 @@ class MTurkController:
         await self.duct.send(self.duct.next_rid(), self.duct.EVENT["MTURK_DELETE_HITS"], { "HITIds": HITIds })
 
     async def create_qualification(self, QualificationTypeParams):
-        await self.duct.send(self.duct.next_rid(), self.duct.EVENT["MTURK_CREATE_QUALIFICATION"], 
+        await self.duct.send(self.duct.next_rid(), self.duct.EVENT["MTURK_CREATE_QUALIFICATION"],
                                         { "QualificationTypeParams": QualificationTypeParams })
+
+    async def associate_qualifications_with_workers(self, QualificationTypeId, WorkerIds, IntegerValue, SendNotification):
+        await self.duct.send(self.duct.next_rid(), self.duct.EVENT["MTURK_ASSOCIATE_QUALIFICATIONS_WITH_WORKERS"],
+                                        { "QualificationTypeId": QualificationTypeId, "WorkerIds": WorkerIds, "IntegerValue": IntegerValue, "SendNotification": SendNotification })
 
     async def list_workers(self):
         await self.duct.send(self.duct.next_rid(), self.duct.EVENT["LIST_WORKERS"], { "Platform": "MTurk" })
