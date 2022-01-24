@@ -1,121 +1,72 @@
-import functools
-
+import asyncio
 from ducts_client import Duct
 from .controllers import ResourceController, MTurkController
-from .event_listeners import ResourceEventListener, MTurkEventListener
+from .listeners import ResourceEventListener, MTurkEventListener
 
-class TuttiDuct(Duct):
+class TuttiClient:
     def __init__(self):
-        super().__init__()
-        self.onopen_handlers = [];
-        self.controllers = {
-            "resource": ResourceController(self),
-            "mturk": MTurkController(self)
+        super()
+
+        self._duct = Duct()
+        self._opened = False
+
+        self.account_info = {
+            'user_name': None,
+            'user_id': None,
+            'access_token': None,
         }
-        self.event_listeners = {
-            "resource": ResourceEventListener(),
-            "mturk": MTurkEventListener()
-        }
 
-    def add_onopen_handler(self, handler_coro):
-        self.onopen_handlers.append(handler_coro)
+    async def open(self, wsd_path):
+        if not self._duct:
+            self._duct = Duct()
+        await self._duct.open(wsd_path)
 
-    async def _onopen(self, event):
-        await super()._onopen(event)
+        self.resource = ResourceManager(self._duct)
+        self.mturk = MTurkManager(self._duct)
 
-        self.setup_handlers()
-        for handler in self.onopen_handlers:
-            await handler()
+        self.on_connection = self._duct.connection_listener
 
-    def setup_handlers(self):
-        self.set_event_handler( self.EVENT["EVENT_HISTORY"], self.handle_for_event_history )
+        wsd = await self.resource.get_web_service_descriptor.call()
+        self.ENUM = wsd['enums']
+        self.ERROR = wsd['enums']['errors']
 
-        self.set_event_handler( self.EVENT["LIST_PROJECTS"],
-                                    functools.partial(self.handle_for, "resource", "list_projects") )
-        self.set_event_handler( self.EVENT["CREATE_PROJECT"],
-                                    functools.partial(self.handle_for, "resource", "create_project") )
-        self.set_event_handler( self.EVENT["GET_PROJECT_SCHEME"],
-                                    functools.partial(self.handle_for, "resource", "get_project_scheme") )
-        self.set_event_handler( self.EVENT["CREATE_TEMPLATES"],
-                                    functools.partial(self.handle_for, "resource", "create_templates") )
-        self.set_event_handler( self.EVENT["LIST_TEMPLATE_PRESETS"],
-                                    functools.partial(self.handle_for, "resource", "list_template_presets") )
-        self.set_event_handler( self.EVENT["LIST_TEMPLATES"],
-                                    functools.partial(self.handle_for, "resource", "list_templates") )
-        self.set_event_handler( self.EVENT["GET_RESPONSES_FOR_TEMPLATE"],
-                                    functools.partial(self.handle_for, "resource", "get_responses_for_template") )
-        self.set_event_handler( self.EVENT["GET_RESPONSES_FOR_NANOTASK"],
-                                    functools.partial(self.handle_for, "resource", "get_responses_for_nanotask") )
-        self.set_event_handler( self.EVENT["GET_NANOTASKS"],
-                                    functools.partial(self.handle_for, "resource", "get_nanotasks") )
-        self.set_event_handler( self.EVENT["UPLOAD_NANOTASKS"],
-                                    functools.partial(self.handle_for, "resource", "upload_nanotasks") )
-        self.set_event_handler( self.EVENT["DELETE_NANOTASKS"],
-                                    functools.partial(self.handle_for, "resource", "delete_nanotasks") )
-        self.set_event_handler( self.EVENT["UPDATE_NANOTASK_NUM_ASSIGNABLE"],
-                                    functools.partial(self.handle_for, "resource", "update_nanotask_num_assignable") )
-        self.set_event_handler( self.EVENT["SESSION"], self.handle_for_session )
-        self.set_event_handler( self.EVENT["CHECK_PLATFORM_WORKER_ID_EXISTENCE_FOR_PROJECT"],
-                                    functools.partial(self.handle_for, "resource", "check_platform_worker_id_existence_for_project") )
+        self.resource.on('sign_in', success=self._on_sign_in)
+        self.resource.on('sign_out', success=self._on_sign_out)
 
-        self.set_event_handler( self.EVENT["MTURK_GET_CREDENTIALS"],
-                                    functools.partial(self.handle_for, "mturk", "get_credentials") )
-        self.set_event_handler( self.EVENT["MTURK_SET_CREDENTIALS"],
-                                    functools.partial(self.handle_for, "mturk", "set_credentials") )
-        self.set_event_handler( self.EVENT["MTURK_CLEAR_CREDENTIALS"],
-                                    functools.partial(self.handle_for, "mturk", "clear_credentials") )
-        self.set_event_handler( self.EVENT["MTURK_SET_SANDBOX"],
-                                    functools.partial(self.handle_for, "mturk", "set_sandbox") )
-        self.set_event_handler( self.EVENT["MTURK_GET_HIT_TYPES"],
-                                    functools.partial(self.handle_for, "mturk", "get_hit_types") )
-        self.set_event_handler( self.EVENT["MTURK_CREATE_HIT_TYPE"],
-                                    functools.partial(self.handle_for, "mturk", "create_hit_type") )
-        self.set_event_handler( self.EVENT["MTURK_CREATE_HITS_WITH_HIT_TYPE"],
-                                    functools.partial(self.handle_for, "mturk", "create_hits_with_hit_type") )
-        self.set_event_handler( self.EVENT["MTURK_LIST_QUALIFICATIONS"],
-                                    functools.partial(self.handle_for, "mturk", "list_qualifications") )
-        self.set_event_handler( self.EVENT["MTURK_LIST_HITS"],
-                                    functools.partial(self.handle_for, "mturk", "list_hits") )
-        self.set_event_handler( self.EVENT["MTURK_LIST_HITS_FOR_HIT_TYPE"],
-                                    functools.partial(self.handle_for, "mturk", "list_hits_for_hit_type") )
-        self.set_event_handler( self.EVENT["MTURK_EXPIRE_HITS"],
-                                    functools.partial(self.handle_for, "mturk", "expire_hits") )
-        self.set_event_handler( self.EVENT["MTURK_DELETE_HITS"],
-                                    functools.partial(self.handle_for, "mturk", "delete_hits") )
-        self.set_event_handler( self.EVENT["MTURK_CREATE_QUALIFICATION"],
-                                    functools.partial(self.handle_for, "mturk", "create_qualification") )
-        self.set_event_handler( self.EVENT["LIST_WORKERS"],
-                                    functools.partial(self.handle_for, "mturk", "list_workers") )
-        self.set_event_handler( self.EVENT["MTURK_LIST_WORKERS_WITH_QUALIFICATION_TYPE"],
-                                    functools.partial(self.handle_for, "mturk", "list_workers_with_qualification_type") )
-        self.set_event_handler( self.EVENT["MTURK_DELETE_QUALIFICATIONS"],
-                                    functools.partial(self.handle_for, "mturk", "delete_qualifications") )
-        self.set_event_handler( self.EVENT["MTURK_LIST_ASSIGNMENTS"],
-                                    functools.partial(self.handle_for, "mturk", "list_assignments") )
-        self.set_event_handler( self.EVENT["MTURK_LIST_ASSIGNMENTS_FOR_HITS"],
-                                    functools.partial(self.handle_for, "mturk", "list_assignments_for_hits") )
-        self.set_event_handler( self.EVENT["MTURK_APPROVE_ASSIGNMENTS"],
-                                    functools.partial(self.handle_for, "mturk", "approve_assignments") )
-        self.set_event_handler( self.EVENT["MTURK_REJECT_ASSIGNMENTS"],
-                                    functools.partial(self.handle_for, "mturk", "reject_assignments") )
-        self.set_event_handler( self.EVENT["MTURK_GET_ASSIGNMENTS"],
-                                    functools.partial(self.handle_for, "mturk", "get_assignments") )
+        self._opened = True
 
+    async def _on_sign_in(self, data):
+        self._set_account_info(data)
 
-    async def handle_for(self, _type, event_name, rid, eid, data):
-        await self._handle(_type, event_name, data)
+    async def _on_sign_out(self):
+        self._delete_account_info()
 
-    async def handle_for_event_history(self, rid, eid, data):
-        if "AllHistory" in data["Contents"]:  await self._handle("resource", "get_event_history", data)
-        elif "History" in data["Contents"]:   await self._handle("resource", "set_event_history", data)
+    async def reconnect(self):
+        await self._duct.reconnect()
 
-    async def handle_for_session(self, rid, eid, data):
-        if data["Contents"]["Command"]=="Create":  await self._handle("resource", "create_session", data)
-        elif data["Contents"]["Command"]=="Get":  await self._handle("resource", "get_template_node", data)
-        elif data["Contents"]["Command"]=="SetResponse":  await self._handle("resource", "set_response", data)
+    def close(self):
+        self._duct.close()
 
-    async def _handle(self, _type, name, data):
-        if data["Status"]=="Success":
-            for func in self.event_listeners[_type].get_handlers(name):  await func(data["Contents"], is_error=False)
-        else:
-            for func in self.event_listeners[_type].get_handlers(name):  await func(data, is_error=True)
+    def _set_account_info(self, data):
+        self.account_info['user_name'] = data['user_name']
+        self.account_info['user_id'] = data['user_id']
+        self.account_info['access_token'] = data['access_token']
+        self.resource._access_token = self.account_info['access_token']
+        self.mturk._access_token = self.account_info['access_token']
+
+    def _delete_account_info(self):
+        self.account_info.user_name = None
+        self.account_info.user_id = None
+        self.account_info.access_token = None
+
+class ResourceManager(ResourceController):
+    def __init__(self, duct):
+        super().__init__(duct)
+        self.on = ResourceEventListener(duct).on
+        self._access_token = None
+
+class MTurkManager(MTurkController):
+    def __init__(self, duct):
+        super().__init__(duct)
+        self.on = MTurkEventListener(duct).on
+        self._access_token = None
