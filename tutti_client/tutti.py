@@ -1,7 +1,7 @@
 import asyncio
 from ducts_client import Duct
-from .controllers import ResourceController, MTurkController
-from .listeners import ResourceEventListener, MTurkEventListener
+from .controller import ResourceController, MTurkController
+from .listener import ResourceEventListener, MTurkEventListener
 
 class TuttiClient:
     def __init__(self):
