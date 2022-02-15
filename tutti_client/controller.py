@@ -3,7 +3,7 @@ import hashlib
 from collections import namedtuple
 from typing import Optional
 
-from .errors import TuttiServerError
+from .error import TuttiServerError
 
 class Controller:
     def __init__(self, duct):
