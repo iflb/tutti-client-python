@@ -8,7 +8,6 @@ class DuctEventListener(ducts_client.event_listeners.DuctEventListener):
         self._handlers = {}
 
     def on(self, names, success = None, error = None, complete = None):
-        print(inspect.getargspec(success).args)
         if not (inspect.iscoroutinefunction(success) or success is None) \
             or not (inspect.iscoroutinefunction(error) or error is None) \
             or not (inspect.iscoroutinefunction(complete) or complete is None):
