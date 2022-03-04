@@ -1,4 +1,5 @@
 import asyncio
+from typing import Optional
 from ducts_client import Duct
 from .controller import ResourceController, MTurkController
 from .listener import ResourceEventListener, MTurkEventListener
@@ -16,10 +17,12 @@ class TuttiClient:
             'access_token': None,
         }
 
-    async def open(self, wsd_path):
+    async def open(self, host: str, wsd_path: str = '/ducts/wsd'):
         if not self._duct:
             self._duct = Duct()
-        await self._duct.open(wsd_path)
+        if wsd_path in host:
+            host = host[:host.find(wsd_path)]
+        await self._duct.open(host+wsd_path)
 
         self.resource = ResourceManager(self._duct)
         self.mturk = MTurkManager(self._duct)
