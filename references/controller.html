@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controller Methods (Making requests) &mdash; Tutti.works Client API  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Event Listeners (Receiving responses)" href="listener.html" />
+    <link rel="prev" title="Facade (Main client object)" href="facade.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Tutti.works Client API
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basic_usage.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../communication.html">Communication with Server</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="facade.html">Facade (Main client object)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Controller Methods (Making requests)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-tutti_client.controller">Tutti.works Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#amazon-mturk-resources">Amazon MTurk Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="listener.html">Event Listeners (Receiving responses)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Tutti.works Client API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Controller Methods (Making requests)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/references/controller.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="controller-methods-making-requests">
+<h1>Controller Methods (Making requests)<a class="headerlink" href="#controller-methods-making-requests" title="Permalink to this headline"></a></h1>
+<section id="module-tutti_client.controller">
+<span id="tutti-works-resources"></span><span id="resource-controller"></span><h2>Tutti.works Resources<a class="headerlink" href="#module-tutti_client.controller" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tutti_client.controller.</span></span><span class="sig-name descname"><span class="pre">ResourceController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duct</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController" title="Permalink to this definition"></a></dt>
+<dd><p>Controller methods to make requests relevant to Tutti.works’ essential resources.</p>
+<p>An instance of this class is bound to TuttiClient object, which can be accessed from <code class="docutils literal notranslate"><span class="pre">TuttiClient.resource</span></code>.
+For instance, methods can be executed in the format of <code class="docutils literal notranslate"><span class="pre">TuttiClient.resource.&lt;method_name&gt;(&lt;args&gt;)</span></code>.
+See <a class="reference internal" href="../communication.html#communication"><span class="std std-ref">Communication with Server</span></a> for further details.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.check_project_diff">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">check_project_diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.check_project_diff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.check_project_diff" title="Permalink to this definition"></a></dt>
+<dd><p>Checks whether a whole project has difference from the last build version.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>project_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Project name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.create_nanotask_group">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_nanotask_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nanotask_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.create_nanotask_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.create_nanotask_group" title="Permalink to this definition"></a></dt>
+<dd><p>Creates a nanotask group for nanotasks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nanotask_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – A list of internal nanotask IDs.</p></li>
+<li><p><strong>project_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Project name.</p></li>
+<li><p><strong>template_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Template name.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.create_nanotasks">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_nanotasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nanotasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_assignable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.create_nanotasks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.create_nanotasks" title="Permalink to this definition"></a></dt>
+<dd><p>Creates one or more nanotasks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>project_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Project name.</p></li>
+<li><p><strong>template_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Template name.</p></li>
+<li><p><strong>nanotasks</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – Nanotask data, represented by a list of <code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code> objects. As keys, each element <cite>must</cite> include: <code class="docutils literal notranslate"><span class="pre">props</span></code> (dict); and <cite>can</cite> have <code class="docutils literal notranslate"><span class="pre">id</span></code> (int), <code class="docutils literal notranslate"><span class="pre">tag</span></code> (str), <code class="docutils literal notranslate"><span class="pre">priority</span></code> (int), <code class="docutils literal notranslate"><span class="pre">num_assignable</span></code> (int), and <code class="docutils literal notranslate"><span class="pre">reference_answers</span></code> (dict).</p></li>
+<li><p><strong>tag</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, optional) – An arbitrary string field for tracking purposes; default value for nanotasks with no specified <code class="docutils literal notranslate"><span class="pre">tag</span></code> field.</p></li>
+<li><p><strong>priority</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>, optional) – A value used for nanotask assignment priority – 1 is the <strong>most</strong> important; default value for nanotasks with no specified <code class="docutils literal notranslate"><span class="pre">priority</span></code> field.</p></li>
+<li><p><strong>num_assignable</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code>, optional) – A maximum number of responses that can be collected for the nanotask; default value for nanotasks with no specified <code class="docutils literal notranslate"><span class="pre">num_assignable</span></code> field.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.create_project">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.create_project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.create_project" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.create_template">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preset_group_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preset_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.create_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.create_template" title="Permalink to this definition"></a></dt>
+<dd><p>Creates a template for project.</p>
+<p>A list of available <code class="docutils literal notranslate"><span class="pre">preset_group_name</span></code> and <code class="docutils literal notranslate"><span class="pre">preset_name</span></code> can be found by calling list_template_presets.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.delete_account">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_account</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.delete_account"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.delete_account" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes an account.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>user_id</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Internal user ID.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.delete_nanotask_group">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_nanotask_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nanotask_group_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.delete_nanotask_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.delete_nanotask_group" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.delete_nanotasks">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_nanotasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nanotask_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.delete_nanotasks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.delete_nanotasks" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes one or more nanotasks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>nanotask_ids</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – A list of internal nanotask IDs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.delete_project">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.delete_project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.delete_project" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.delete_template">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.delete_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.delete_template" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.get_nanotask_group">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_nanotask_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nanotask_group_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.get_nanotask_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.get_nanotask_group" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.get_project_scheme">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_project_scheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cached</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.get_project_scheme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.get_project_scheme" title="Permalink to this definition"></a></dt>
+<dd><p>Requests a project scheme.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>project_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Project name.</p></li>
+<li><p><strong>cached</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code>) – If True, scheme is loaded and returned from Tutti.works server memory without reflecting any changes made in the project’s <code class="docutils literal notranslate"><span class="pre">scheme.py</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.get_user_ids">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_user_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.get_user_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.get_user_ids" title="Permalink to this definition"></a></dt>
+<dd><p>Requests a list of available internal user IDs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.get_web_service_descriptor">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_web_service_descriptor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.get_web_service_descriptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.get_web_service_descriptor" title="Permalink to this definition"></a></dt>
+<dd><p>Requests a set of parameters that needs to be shared with backend.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_nanotask_groups">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_nanotask_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_nanotask_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_nanotask_groups" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_nanotasks">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_nanotasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_nanotasks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_nanotasks" title="Permalink to this definition"></a></dt>
+<dd><p>Requests a list of worker IDs that contributed to the specified project.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>project_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Project name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_nanotasks_with_responses">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_nanotasks_with_responses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_nanotasks_with_responses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_nanotasks_with_responses" title="Permalink to this definition"></a></dt>
+<dd><p>Requests a list of nanotask IDs associated to a template that collected at least one response record.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>project_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Project name.</p></li>
+<li><p><strong>template_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Template name.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_projects">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_projects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_projects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_projects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_projects_with_responses">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_projects_with_responses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_projects_with_responses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_projects_with_responses" title="Permalink to this definition"></a></dt>
+<dd><p>Requests a list of project names that collected at least one response record.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_responses_for_nanotask">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_responses_for_nanotask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nanotask_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_responses_for_nanotask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_responses_for_nanotask" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_responses_for_project">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_responses_for_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_responses_for_project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_responses_for_project" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_responses_for_template">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_responses_for_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_responses_for_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_responses_for_template" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_responses_for_work_session">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_responses_for_work_session</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">work_session_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_responses_for_work_session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_responses_for_work_session" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_responses_for_worker">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_responses_for_worker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">worker_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_responses_for_worker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_responses_for_worker" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_template_presets">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_template_presets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_template_presets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_template_presets" title="Permalink to this definition"></a></dt>
+<dd><p>Requests a list of all available template presets.</p>
+<p>Note that the returned list is for the deployed version of Tutti.works server – if a project specified in the argument was created in the older server version, some presets in the list is not available.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>project_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Project name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_templates">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_templates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_templates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_templates" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_templates_with_responses">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_templates_with_responses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_templates_with_responses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_templates_with_responses" title="Permalink to this definition"></a></dt>
+<dd><p>Requests a list of template names in a project that collected at least one response record.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>project_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Project name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_work_sessions_with_responses">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_work_sessions_with_responses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_work_sessions_with_responses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_work_sessions_with_responses" title="Permalink to this definition"></a></dt>
+<dd><p>Requests a list of work session IDs of a project that collected at least one response record.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>project_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Project name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_workers_for_project">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_workers_for_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_workers_for_project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_workers_for_project" title="Permalink to this definition"></a></dt>
+<dd><p>Requests a list of worker IDs that contributed to the specified project.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>project_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Project name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.list_workers_with_responses">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_workers_with_responses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.list_workers_with_responses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.list_workers_with_responses" title="Permalink to this definition"></a></dt>
+<dd><p>Requests a list of worker IDs that submitted at least one response record.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>project_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Project name.</p></li>
+<li><p><strong>template_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Template name.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.rebuild_project">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rebuild_project</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.rebuild_project"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.rebuild_project" title="Permalink to this definition"></a></dt>
+<dd><p>Rebuilds project for the newest version.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>project_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – Project name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.sign_in">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sign_in</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password_hash</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.sign_in"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.sign_in" title="Permalink to this definition"></a></dt>
+<dd><p>Signs into Tutti.works server.</p>
+<p>This must be called before calling any other controller methods.
+A pair of <cite>user_name</cite> and <cite>password_hash</cite>, OR valid <cite>access_token</cite> must be specified as arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, optional) – User name.</p></li>
+<li><p><strong>password_hash</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, optional) – MD5-hashed password.</p></li>
+<li><p><strong>access_token</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, optional) – Access token hash.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.sign_out">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sign_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.sign_out"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.sign_out" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.ResourceController.sign_up">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sign_up</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password_hash</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">privilege_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#ResourceController.sign_up"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.ResourceController.sign_up" title="Permalink to this definition"></a></dt>
+<dd><p>Signs up for a new user account.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_name</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>) – User name.</p></li>
+<li><p><strong>password_hash</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, optional) – MD5-hashed password.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="amazon-mturk-resources">
+<span id="mturk-controller"></span><h2>Amazon MTurk Resources<a class="headerlink" href="#amazon-mturk-resources" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tutti_client.controller.</span></span><span class="sig-name descname"><span class="pre">MTurkController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duct</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController" title="Permalink to this definition"></a></dt>
+<dd><p>Controller methods to make requests relevant to Amazon MTurk operations.</p>
+<p>An instance of this class is bound to TuttiClient object, which can be accessed from <code class="docutils literal notranslate"><span class="pre">TuttiClient.mturk</span></code>.
+For instance, methods can be executed in the format of <code class="docutils literal notranslate"><span class="pre">TuttiClient.mturk.&lt;method_name&gt;(&lt;args&gt;)</span></code>.
+See <a class="reference internal" href="../communication.html#communication"><span class="std std-ref">Communication with Server</span></a> for further details.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.add_credentials">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_credentials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">access_key_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret_access_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.add_credentials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.add_credentials" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.add_hits_to_tutti_hit_batch">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_hits_to_tutti_hit_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hit_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_hits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.add_hits_to_tutti_hit_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.add_hits_to_tutti_hit_batch" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.approve_assignments">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">approve_assignments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assignment_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">requester_feedback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">override_rejection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.approve_assignments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.approve_assignments" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.associate_qualifications_with_workers">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">associate_qualifications_with_workers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qualification_type_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">worker_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integer_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">send_notification</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.associate_qualifications_with_workers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.associate_qualifications_with_workers" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.create_qualification_type">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_qualification_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_granted</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualification_type_status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.create_qualification_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.create_qualification_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.create_tutti_hit_batch">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_tutti_hit_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">project_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hit_type_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hit_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_hits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.create_tutti_hit_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.create_tutti_hit_batch" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.delete_credentials">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_credentials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">credentials_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.delete_credentials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.delete_credentials" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.delete_hits">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_hits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hit_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.delete_hits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.delete_hits" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.delete_qualification_types">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_qualification_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qualification_type_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.delete_qualification_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.delete_qualification_types" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.delete_tutti_hit_batch">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_tutti_hit_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.delete_tutti_hit_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.delete_tutti_hit_batch" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.exec_boto3">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exec_boto3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.exec_boto3"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.exec_boto3" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.expire_hits">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">expire_hits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hit_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.expire_hits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.expire_hits" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.get_active_credentials">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_active_credentials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.get_active_credentials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.get_active_credentials" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.get_credentials">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_credentials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">credentials_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.get_credentials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.get_credentials" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.list_assignments_for_tutti_hit_batch">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_assignments_for_tutti_hit_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cached</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.list_assignments_for_tutti_hit_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.list_assignments_for_tutti_hit_batch" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.list_credentials">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_credentials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.list_credentials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.list_credentials" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.list_hit_types">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_hit_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.list_hit_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.list_hit_types" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.list_hits_for_tutti_hit_batch">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_hits_for_tutti_hit_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cached</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.list_hits_for_tutti_hit_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.list_hits_for_tutti_hit_batch" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.list_qualification_types">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_qualification_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_user_defined</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cached</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.list_qualification_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.list_qualification_types" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.list_tutti_hit_batches">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_tutti_hit_batches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.list_tutti_hit_batches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.list_tutti_hit_batches" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.list_tutti_hit_batches_with_hits">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_tutti_hit_batches_with_hits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.list_tutti_hit_batches_with_hits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.list_tutti_hit_batches_with_hits" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.list_workers">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_workers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.list_workers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.list_workers" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.notify_workers">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">notify_workers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">worker_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.notify_workers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.notify_workers" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.reject_assignments">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reject_assignments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assignment_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">requester_feedback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.reject_assignments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.reject_assignments" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.rename_credentials">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rename_credentials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">credentials_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.rename_credentials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.rename_credentials" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.send_bonus">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">send_bonus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">worker_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bonus_amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assignment_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reason</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.send_bonus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.send_bonus" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.set_active_credentials">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_active_credentials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">credentials_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.set_active_credentials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.set_active_credentials" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.controller.MTurkController.set_active_sandbox_mode">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_active_sandbox_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">is_sandbox</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">called</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/controller.html#MTurkController.set_active_sandbox_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.controller.MTurkController.set_active_sandbox_mode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="facade.html" class="btn btn-neutral float-left" title="Facade (Main client object)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="listener.html" class="btn btn-neutral float-right" title="Event Listeners (Receiving responses)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, ifLab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
