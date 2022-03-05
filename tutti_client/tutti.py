@@ -5,6 +5,13 @@ from .controller import ResourceController, MTurkController
 from .listener import ResourceEventListener, MTurkEventListener
 
 class TuttiClient:
+    """A facade class which communicates with Tutti server.
+
+    Attributes:
+        resource (ResourceManager): Member for Tutti.works' essential resources.
+        mturk (MTurkManager): Member for operations relevant to Amazon Mechanical Turk.
+        account_info (:obj:`dict`): Sign-in account information updated automatically on calling authentication methods.
+    """
     def __init__(self):
         super()
 
@@ -18,6 +25,12 @@ class TuttiClient:
         }
 
     async def open(self, host: str, wsd_path: str = '/ducts/wsd'):
+        """Opens connection with Tutti.works server.
+
+        Args:
+            host (:obj:`str`): Host name of Tutti.works server.
+            wsd_path (:obj:`str`): Path from host root for obtaining DUCTS web service descriptor.
+        """
         if not self._duct:
             self._duct = Duct()
         if wsd_path in host:
@@ -45,9 +58,13 @@ class TuttiClient:
         self._delete_account_info()
 
     async def reconnect(self):
+        """Reconnects with Tutti.works server.
+        """
         await self._duct.reconnect()
 
     def close(self):
+        """Closes connection with Tutti.works server.
+        """
         self._duct.close()
 
     def _set_account_info(self, data):
@@ -63,12 +80,26 @@ class TuttiClient:
         self.account_info.access_token = None
 
 class ResourceManager(ResourceController):
+    """Controller methods and setter method of event listener for Tutti.works' essential resources.
+
+    For the list of all available controller methods, see :ref:`ResourceController <resource_controller>`.
+
+    Attributes:
+        on (:obj:`function`): tutti_client.listener.ResourceEventListener.on
+    """
     def __init__(self, duct):
         super().__init__(duct)
         self.on = ResourceEventListener(duct).on
         self._access_token = None
 
 class MTurkManager(MTurkController):
+    """Controller methods and setter method of event listener for Amazon MTurk related operations.
+
+    For the list of all available controller methods, see :ref:`MTurkController <mturk_controller>`.
+
+    Attributes:
+        on (:obj:`function`): tutti_client.listener.MTurkEventListener.on
+    """
     def __init__(self, duct):
         super().__init__(duct)
         self.on = MTurkEventListener(duct).on

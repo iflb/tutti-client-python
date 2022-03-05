@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Listeners (Receiving responses) &mdash; Tutti.works Client API  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Controller Methods (Making requests)" href="controller.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Tutti.works Client API
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basic_usage.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../communication.html">Communication with Server</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="facade.html">Facade (Main client object)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controller.html">Controller Methods (Making requests)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Event Listeners (Receiving responses)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-tutti_client.listener">Base Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tutti-works-resources">Tutti.works Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#amazon-mturk-resources">Amazon MTurk Resources</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Tutti.works Client API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Event Listeners (Receiving responses)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/references/listener.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="event-listeners-receiving-responses">
+<h1>Event Listeners (Receiving responses)<a class="headerlink" href="#event-listeners-receiving-responses" title="Permalink to this headline"></a></h1>
+<p>When event listeners are properly set for corresponding controller methods, their responses are handled and passed as an argument of the passed handler coroutines.
+Set handler coroutines are called every time each response is received, regardless of requests are made in <strong>send</strong> or <strong>call</strong> mode.</p>
+<section id="module-tutti_client.listener">
+<span id="base-class"></span><h2>Base Class<a class="headerlink" href="#module-tutti_client.listener" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tutti_client.listener.DuctEventListener">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tutti_client.listener.</span></span><span class="sig-name descname"><span class="pre">DuctEventListener</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duct</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/listener.html#DuctEventListener"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.listener.DuctEventListener" title="Permalink to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="tutti_client.listener.DuctEventListener.on">
+<span class="sig-name descname"><span class="pre">on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">success</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Coroutine</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Coroutine</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">complete</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Coroutine</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/listener.html#DuctEventListener.on"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.listener.DuctEventListener.on" title="Permalink to this definition"></a></dt>
+<dd><p>Sets an event listener to specified controller method(s) in <code class="docutils literal notranslate"><span class="pre">names</span></code> argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>names</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code>) – A name/names of controller methods to set event listeners for.</p></li>
+<li><p><strong>success</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">coroutine</span></code>, optional) – A function to handle successful responses with. Specified coroutine needs to have one argument which has a successful response object.</p></li>
+<li><p><strong>error</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">coroutine</span></code>, optional) – A function to handle error responses with. Specified coroutine needs to have one  argument which has an error response object.</p></li>
+<li><p><strong>complete</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">coroutine</span></code>, optional) – A function to handle responses with. Specified coroutine cannot have any argument.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="tutti-works-resources">
+<h2>Tutti.works Resources<a class="headerlink" href="#tutti-works-resources" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tutti_client.listener.ResourceEventListener">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tutti_client.listener.</span></span><span class="sig-name descname"><span class="pre">ResourceEventListener</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duct</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/listener.html#ResourceEventListener"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.listener.ResourceEventListener" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tutti_client.listener.DuctEventListener" title="tutti_client.listener.DuctEventListener"><code class="xref py py-class docutils literal notranslate"><span class="pre">tutti_client.listener.DuctEventListener</span></code></a></p>
+</dd></dl>
+
+</section>
+<section id="amazon-mturk-resources">
+<h2>Amazon MTurk Resources<a class="headerlink" href="#amazon-mturk-resources" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tutti_client.listener.MTurkEventListener">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tutti_client.listener.</span></span><span class="sig-name descname"><span class="pre">MTurkEventListener</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duct</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/tutti_client/listener.html#MTurkEventListener"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tutti_client.listener.MTurkEventListener" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tutti_client.listener.DuctEventListener" title="tutti_client.listener.DuctEventListener"><code class="xref py py-class docutils literal notranslate"><span class="pre">tutti_client.listener.DuctEventListener</span></code></a></p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="controller.html" class="btn btn-neutral float-left" title="Controller Methods (Making requests)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, ifLab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
