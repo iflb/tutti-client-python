@@ -1,46 +1,93 @@
-
 <!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tutti_client.listener &#8212; tutti_client  documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tutti_client.listener &mdash; Tutti.works Client API  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-   
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
 
-  </head><body>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> Tutti.works Client API
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../basic_usage.html">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../communication.html">Communication with Server</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../references/facade.html">Facade (Main client object)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references/controller.html">Controller Methods (Making requests)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references/listener.html">Event Listeners (Receiving responses)</a></li>
+</ul>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
+        </div>
+      </div>
+    </nav>
 
-          <div class="body" role="main">
-            
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Tutti.works Client API</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>tutti_client.listener</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <h1>Source code for tutti_client.listener</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">inspect</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Coroutine</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
 
 <span class="kn">import</span> <span class="nn">ducts_client</span>
 
-<div class="viewcode-block" id="DuctEventListener"><a class="viewcode-back" href="../../tutti_client.html#tutti_client.listener.DuctEventListener">[docs]</a><span class="k">class</span> <span class="nc">DuctEventListener</span><span class="p">(</span><span class="n">ducts_client</span><span class="o">.</span><span class="n">event_listeners</span><span class="o">.</span><span class="n">DuctEventListener</span><span class="p">):</span>
+<div class="viewcode-block" id="DuctEventListener"><a class="viewcode-back" href="../../references/listener.html#tutti_client.listener.DuctEventListener">[docs]</a><span class="k">class</span> <span class="nc">DuctEventListener</span><span class="p">(</span><span class="n">ducts_client</span><span class="o">.</span><span class="n">event_listeners</span><span class="o">.</span><span class="n">DuctEventListener</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duct</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_duct</span> <span class="o">=</span> <span class="n">duct</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span> <span class="o">=</span> <span class="p">{}</span>
 
-<div class="viewcode-block" id="DuctEventListener.on"><a class="viewcode-back" href="../../tutti_client.html#tutti_client.listener.DuctEventListener.on">[docs]</a>    <span class="k">def</span> <span class="nf">on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">success</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">complete</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="DuctEventListener.on"><a class="viewcode-back" href="../../references/listener.html#tutti_client.listener.DuctEventListener.on">[docs]</a>    <span class="k">def</span> <span class="nf">on</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">success</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Coroutine</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">error</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Coroutine</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">complete</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Coroutine</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets an event listener to specified controller method(s) in ``names`` argument.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            names (:obj:`str` or :obj:`list`): A name/names of controller methods to set event listeners for.</span>
+<span class="sd">            success (:obj:`coroutine`, optional): A function to handle successful responses with. Specified coroutine needs to have one argument which has a successful response object.</span>
+<span class="sd">            error (:obj:`coroutine`, optional): A function to handle error responses with. Specified coroutine needs to have one  argument which has an error response object.</span>
+<span class="sd">            complete (:obj:`coroutine`, optional): A function to handle responses with. Specified coroutine cannot have any argument.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">success</span><span class="p">)</span> <span class="ow">or</span> <span class="n">success</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> \
             <span class="ow">or</span> <span class="ow">not</span> <span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="ow">or</span> <span class="n">error</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> \
             <span class="ow">or</span> <span class="ow">not</span> <span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">complete</span><span class="p">)</span> <span class="ow">or</span> <span class="n">complete</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
@@ -70,7 +117,7 @@
         <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">methods</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;complete&#39;</span><span class="p">:</span> <span class="p">[]</span> <span class="p">}</span>
 
-<div class="viewcode-block" id="DuctEventListener.register_handlers"><a class="viewcode-back" href="../../tutti_client.html#tutti_client.listener.DuctEventListener.register_handlers">[docs]</a>    <span class="k">def</span> <span class="nf">register_handlers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">listener_event_relay_map</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">register_handlers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">listener_event_relay_map</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">eid</span> <span class="ow">in</span> <span class="n">listener_event_relay_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">def</span> <span class="nf">coro_gen</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
                 <span class="k">async</span> <span class="k">def</span> <span class="nf">_coro</span><span class="p">(</span><span class="n">rid</span><span class="p">,</span> <span class="n">eid</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -79,9 +126,9 @@
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_duct</span><span class="o">.</span><span class="n">set_event_handler</span><span class="p">(</span><span class="n">eid</span><span class="p">,</span> <span class="n">coro_gen</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_set_default_tutti_handlers</span><span class="p">(</span><span class="n">listener_event_relay_map</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_default_tutti_handlers</span><span class="p">(</span><span class="n">listener_event_relay_map</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="ResourceEventListener"><a class="viewcode-back" href="../../tutti_client.html#tutti_client.listener.ResourceEventListener">[docs]</a><span class="k">class</span> <span class="nc">ResourceEventListener</span><span class="p">(</span><span class="n">DuctEventListener</span><span class="p">):</span>
+<div class="viewcode-block" id="ResourceEventListener"><a class="viewcode-back" href="../../references/listener.html#tutti_client.listener.ResourceEventListener">[docs]</a><span class="k">class</span> <span class="nc">ResourceEventListener</span><span class="p">(</span><span class="n">DuctEventListener</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duct</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">duct</span><span class="p">)</span>
 
@@ -161,7 +208,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">register_handlers</span><span class="p">(</span><span class="s1">&#39;resource&#39;</span><span class="p">,</span> <span class="n">listener_event_relay_map</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="MTurkEventListener"><a class="viewcode-back" href="../../tutti_client.html#tutti_client.listener.MTurkEventListener">[docs]</a><span class="k">class</span> <span class="nc">MTurkEventListener</span><span class="p">(</span><span class="n">DuctEventListener</span><span class="p">):</span>
+<div class="viewcode-block" id="MTurkEventListener"><a class="viewcode-back" href="../../references/listener.html#tutti_client.listener.MTurkEventListener">[docs]</a><span class="k">class</span> <span class="nc">MTurkEventListener</span><span class="p">(</span><span class="n">DuctEventListener</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duct</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">duct</span><span class="p">)</span>
 
@@ -227,69 +274,31 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">register_handlers</span><span class="p">(</span><span class="s1">&#39;mturk&#39;</span><span class="p">,</span> <span class="n">listener_event_relay_map</span><span class="p">)</span></div>
 </pre></div>
 
+           </div>
           </div>
-          
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, ifLab.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">tutti_client</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../tutti_client.html">tutti_client package</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="../index.html">Module code</a><ul>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2022, Author.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>

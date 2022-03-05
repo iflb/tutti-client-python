@@ -14,7 +14,6 @@ import os
 import sys
 sys.path.insert(0, '/Users/susumu/programming/python/tutti-client-python')
 
-
 # -- Project information -----------------------------------------------------
 
 project = 'Tutti.works Client API'
@@ -63,10 +62,6 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #html_theme = 'bizstyle'
 #html_theme = 'nature'
 html_theme = 'sphinx_rtd_theme'
-
-html_theme_options = {
-    "project_nav_name": "Tutti.works Client API"
-}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

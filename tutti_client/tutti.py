@@ -82,6 +82,8 @@ class TuttiClient:
 class ResourceManager(ResourceController):
     """Controller methods and setter method of event listener for Tutti.works' essential resources.
 
+    For the list of all available controller methods, see tutti_client.controller.ResourceController.
+
     Attributes:
         on (:obj:`func`): tutti_client.listener.ResourceEventListener.on
     """

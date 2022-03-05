@@ -37,7 +37,11 @@
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../basic_usage.html">Basic Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../communication.html">Communication with Server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutti_client.html">tutti_client package</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../references/facade.html">Facade (Main client object)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references/controller.html">Controller Methods (Making requests)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references/listener.html">Event Listeners (Receiving responses)</a></li>
 </ul>
 
         </div>
@@ -71,7 +75,7 @@
 <span class="kn">from</span> <span class="nn">.controller</span> <span class="kn">import</span> <span class="n">ResourceController</span><span class="p">,</span> <span class="n">MTurkController</span>
 <span class="kn">from</span> <span class="nn">.listener</span> <span class="kn">import</span> <span class="n">ResourceEventListener</span><span class="p">,</span> <span class="n">MTurkEventListener</span>
 
-<div class="viewcode-block" id="TuttiClient"><a class="viewcode-back" href="../../tutti_client.html#tutti_client.tutti.TuttiClient">[docs]</a><span class="k">class</span> <span class="nc">TuttiClient</span><span class="p">:</span>
+<div class="viewcode-block" id="TuttiClient"><a class="viewcode-back" href="../../references/facade.html#tutti_client.TuttiClient">[docs]</a><span class="k">class</span> <span class="nc">TuttiClient</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;A facade class which communicates with Tutti server.</span>
 
 <span class="sd">    Attributes:</span>
@@ -91,7 +95,7 @@
             <span class="s1">&#39;access_token&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">}</span>
 
-<div class="viewcode-block" id="TuttiClient.open"><a class="viewcode-back" href="../../tutti_client.html#tutti_client.tutti.TuttiClient.open">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wsd_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;/ducts/wsd&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="TuttiClient.open"><a class="viewcode-back" href="../../references/facade.html#tutti_client.TuttiClient.open">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wsd_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;/ducts/wsd&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Opens connection with Tutti.works server.</span>
 
 <span class="sd">        Args:</span>
@@ -124,12 +128,12 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_on_sign_out</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_delete_account_info</span><span class="p">()</span>
 
-<div class="viewcode-block" id="TuttiClient.reconnect"><a class="viewcode-back" href="../../tutti_client.html#tutti_client.tutti.TuttiClient.reconnect">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">reconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TuttiClient.reconnect"><a class="viewcode-back" href="../../references/facade.html#tutti_client.TuttiClient.reconnect">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">reconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Reconnects with Tutti.works server.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duct</span><span class="o">.</span><span class="n">reconnect</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="TuttiClient.close"><a class="viewcode-back" href="../../tutti_client.html#tutti_client.tutti.TuttiClient.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="TuttiClient.close"><a class="viewcode-back" href="../../references/facade.html#tutti_client.TuttiClient.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Closes connection with Tutti.works server.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_duct</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
@@ -146,8 +150,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">account_info</span><span class="o">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">account_info</span><span class="o">.</span><span class="n">access_token</span> <span class="o">=</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="ResourceManager"><a class="viewcode-back" href="../../tutti_client.html#tutti_client.tutti.ResourceManager">[docs]</a><span class="k">class</span> <span class="nc">ResourceManager</span><span class="p">(</span><span class="n">ResourceController</span><span class="p">):</span>
+<div class="viewcode-block" id="ResourceManager"><a class="viewcode-back" href="../../references/facade.html#tutti_client.ResourceManager">[docs]</a><span class="k">class</span> <span class="nc">ResourceManager</span><span class="p">(</span><span class="n">ResourceController</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Controller methods and setter method of event listener for Tutti.works&#39; essential resources.</span>
+
+<span class="sd">    For the list of all available controller methods, see tutti_client.controller.ResourceController.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        on (:obj:`func`): tutti_client.listener.ResourceEventListener.on</span>
@@ -157,7 +163,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">on</span> <span class="o">=</span> <span class="n">ResourceEventListener</span><span class="p">(</span><span class="n">duct</span><span class="p">)</span><span class="o">.</span><span class="n">on</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_access_token</span> <span class="o">=</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="MTurkManager"><a class="viewcode-back" href="../../tutti_client.html#tutti_client.tutti.MTurkManager">[docs]</a><span class="k">class</span> <span class="nc">MTurkManager</span><span class="p">(</span><span class="n">MTurkController</span><span class="p">):</span>
+<div class="viewcode-block" id="MTurkManager"><a class="viewcode-back" href="../../references/facade.html#tutti_client.MTurkManager">[docs]</a><span class="k">class</span> <span class="nc">MTurkManager</span><span class="p">(</span><span class="n">MTurkController</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Controller methods and setter method of event listener for Tutti.works&#39; essential resources.</span>
 
 <span class="sd">    Attributes:</span>

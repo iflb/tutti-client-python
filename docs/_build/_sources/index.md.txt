@@ -11,9 +11,20 @@ pip install tutti_client
 ```
 
 ## Contents
+
+### Getting Started
+
 ```{toctree}
 :maxdepth: 1
 basic_usage
 communication
-tutti_client
+```
+
+### References
+
+```{toctree}
+:maxdepth: 1
+references/facade
+references/controller
+references/listener
 ```

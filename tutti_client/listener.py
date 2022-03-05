@@ -1,3 +1,4 @@
+from typing import Optional, Union, Coroutine
 import inspect
 
 import ducts_client
@@ -7,7 +8,15 @@ class DuctEventListener(ducts_client.event_listeners.DuctEventListener):
         self._duct = duct
         self._handlers = {}
 
-    def on(self, names, success = None, error = None, complete = None):
+    def on(self, names: Union[str, list[str]], success: Optional[Coroutine] = None, error: Optional[Coroutine] = None, complete: Optional[Coroutine] = None):
+        """Sets an event listener to specified controller method(s) in ``names`` argument.
+
+        Args:
+            names (:obj:`str` or :obj:`list`): A name/names of controller methods to set event listeners for.
+            success (:obj:`coroutine`, optional): A function to handle successful responses with. Specified coroutine needs to have one argument which has a successful response object.
+            error (:obj:`coroutine`, optional): A function to handle error responses with. Specified coroutine needs to have one  argument which has an error response object.
+            complete (:obj:`coroutine`, optional): A function to handle responses with. Specified coroutine cannot have any argument.
+        """
         if not (inspect.iscoroutinefunction(success) or success is None) \
             or not (inspect.iscoroutinefunction(error) or error is None) \
             or not (inspect.iscoroutinefunction(complete) or complete is None):
