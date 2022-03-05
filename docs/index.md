@@ -1,4 +1,8 @@
-# Tutti.works Client Python API 
+```{eval-rst}
+:github_url: https://github.com/iflb/tutti-client-python
+```
+
+# Tutti.works Python Client API 
 
 Communicates with Tutti.works server via WebSocket connection.
 
@@ -28,3 +32,7 @@ references/facade
 references/controller
 references/listener
 ```
+
+### See also
+
+- [Tutti.works Documentation](https://iflb.github.io/tutti)

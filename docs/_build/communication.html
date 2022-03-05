@@ -80,7 +80,7 @@
            <div itemprop="articleBody">
              
   <section id="communication-with-server">
-<h1>Communication with Server<a class="headerlink" href="#communication-with-server" title="Permalink to this headline"></a></h1>
+<span id="communication"></span><h1>Communication with Server<a class="headerlink" href="#communication-with-server" title="Permalink to this headline"></a></h1>
 <p>Tutti.works client API provides two ways of communication: <strong>send</strong> and <strong>call</strong> modes.</p>
 <section id="send-mode">
 <h2>Send mode<a class="headerlink" href="#send-mode" title="Permalink to this headline"></a></h2>
@@ -90,14 +90,8 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>   <span class="c1"># prints list of existing projects</span>
     
 <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="c1"># (open and sign in)</span>
-
     <span class="n">client</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;list_projects&#39;</span><span class="p">,</span> <span class="n">on_list_projects</span><span class="p">)</span>   <span class="c1"># set event listener</span>
     <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">list_projects</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>     <span class="c1"># send request</span>
-
-<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
-    <span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </pre></div>
 </div>
 <section id="making-requests">

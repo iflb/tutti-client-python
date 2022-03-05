@@ -1,5 +1,8 @@
 # Controller Methods (Making requests)
 
+```{eval-rst}
+.. _resource_controller:
+```
 ## Tutti.works Resources
 
 ```{eval-rst}
@@ -9,6 +12,9 @@
     :undoc-members:
 ```
 
+```{eval-rst}
+.. _mturk_controller:
+```
 ## Amazon MTurk Resources
 
 ```{eval-rst}

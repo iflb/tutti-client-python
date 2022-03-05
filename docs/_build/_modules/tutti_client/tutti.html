@@ -153,10 +153,10 @@
 <div class="viewcode-block" id="ResourceManager"><a class="viewcode-back" href="../../references/facade.html#tutti_client.ResourceManager">[docs]</a><span class="k">class</span> <span class="nc">ResourceManager</span><span class="p">(</span><span class="n">ResourceController</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Controller methods and setter method of event listener for Tutti.works&#39; essential resources.</span>
 
-<span class="sd">    For the list of all available controller methods, see tutti_client.controller.ResourceController.</span>
+<span class="sd">    For the list of all available controller methods, see :ref:`ResourceController &lt;resource_controller&gt;`.</span>
 
 <span class="sd">    Attributes:</span>
-<span class="sd">        on (:obj:`func`): tutti_client.listener.ResourceEventListener.on</span>
+<span class="sd">        on (:obj:`function`): tutti_client.listener.ResourceEventListener.on</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duct</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">duct</span><span class="p">)</span>
@@ -164,10 +164,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_access_token</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="MTurkManager"><a class="viewcode-back" href="../../references/facade.html#tutti_client.MTurkManager">[docs]</a><span class="k">class</span> <span class="nc">MTurkManager</span><span class="p">(</span><span class="n">MTurkController</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Controller methods and setter method of event listener for Tutti.works&#39; essential resources.</span>
+    <span class="sd">&quot;&quot;&quot;Controller methods and setter method of event listener for Amazon MTurk related operations.</span>
+
+<span class="sd">    For the list of all available controller methods, see :ref:`MTurkController &lt;mturk_controller&gt;`.</span>
 
 <span class="sd">    Attributes:</span>
-<span class="sd">        on (:obj:`func`): tutti_client.listener.MTurkEventListener.on</span>
+<span class="sd">        on (:obj:`function`): tutti_client.listener.MTurkEventListener.on</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duct</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">duct</span><span class="p">)</span>

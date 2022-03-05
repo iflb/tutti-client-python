@@ -82,10 +82,10 @@ class TuttiClient:
 class ResourceManager(ResourceController):
     """Controller methods and setter method of event listener for Tutti.works' essential resources.
 
-    For the list of all available controller methods, see tutti_client.controller.ResourceController.
+    For the list of all available controller methods, see :ref:`ResourceController <resource_controller>`.
 
     Attributes:
-        on (:obj:`func`): tutti_client.listener.ResourceEventListener.on
+        on (:obj:`function`): tutti_client.listener.ResourceEventListener.on
     """
     def __init__(self, duct):
         super().__init__(duct)
@@ -93,10 +93,12 @@ class ResourceManager(ResourceController):
         self._access_token = None
 
 class MTurkManager(MTurkController):
-    """Controller methods and setter method of event listener for Tutti.works' essential resources.
+    """Controller methods and setter method of event listener for Amazon MTurk related operations.
+
+    For the list of all available controller methods, see :ref:`MTurkController <mturk_controller>`.
 
     Attributes:
-        on (:obj:`func`): tutti_client.listener.MTurkEventListener.on
+        on (:obj:`function`): tutti_client.listener.MTurkEventListener.on
     """
     def __init__(self, duct):
         super().__init__(duct)

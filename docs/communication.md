@@ -1,3 +1,6 @@
+```{eval-rst}
+.. _communication:
+```
 # Communication with Server
 
 Tutti.works client API provides two ways of communication: **send** and **call** modes.
@@ -13,14 +16,8 @@ async def on_list_projects(data):
     print(data)   # prints list of existing projects
     
 async def main():
-    # (open and sign in)
-
     client.resource.on('list_projects', on_list_projects)   # set event listener
     await client.resource.list_projects.send()     # send request
-
-if __name__=='__main__':
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
 ```
 
 ### Making requests

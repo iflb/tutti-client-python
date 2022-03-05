@@ -39,6 +39,12 @@ class Controller:
             getattr(self.__class__, name).call = self._curried(name, called=True)
 
 class ResourceController(Controller):
+    """Controller methods to make requests relevant to Tutti.works' essential resources.
+
+    An instance of this class is bound to TuttiClient object, which can be accessed from ``TuttiClient.resource``.
+    For instance, methods can be executed in the format of ``TuttiClient.resource.<method_name>(<args>)``.
+    See :ref:`Communication with Server <communication>` for further details.
+    """
     def __init__(self, duct):
         super().__init__(duct)
 
@@ -409,6 +415,12 @@ class ResourceController(Controller):
             )
 
 class MTurkController(Controller):
+    """Controller methods to make requests relevant to Amazon MTurk operations.
+
+    An instance of this class is bound to TuttiClient object, which can be accessed from ``TuttiClient.mturk``.
+    For instance, methods can be executed in the format of ``TuttiClient.mturk.<method_name>(<args>)``.
+    See :ref:`Communication with Server <communication>` for further details.
+    """
     def __init__(self, duct):
         super().__init__(duct)
 
@@ -418,7 +430,7 @@ class MTurkController(Controller):
                 {},
                 called = called
             )
-    async def set_active_credentials(self, credentials_id, called = True):
+    async def set_active_credentials(self, credentials_id: str, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_SET_ACTIVE_CREDENTIALS'],
                 { 'credentials_id': credentials_id },
@@ -430,55 +442,55 @@ class MTurkController(Controller):
                 {},
                 called = called
             )
-    async def get_credentials(self, credentials_id, called = True):
+    async def get_credentials(self, credentials_id: str, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_GET_CREDENTIALS'],
                 { 'credentials_id': credentials_id },
                 called = called
             )
-    async def delete_credentials(self, credentials_id, called = True):
+    async def delete_credentials(self, credentials_id: str, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_DELETE_CREDENTIALS'],
                 { 'credentials_id': credentials_id },
                 called = called
             )
-    async def rename_credentials(self, credentials_id, label, called = True):
+    async def rename_credentials(self, credentials_id: str, label: str, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_RENAME_CREDENTIALS'],
                 { 'credentials_id': credentials_id, label: label },
                 called = called
             )
-    async def add_credentials(self, access_key_id, secret_access_key, label, called = True):
+    async def add_credentials(self, access_key_id: str, secret_access_key: str, label: str, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_ADD_CREDENTIALS'],
                 { 'access_key_id': access_key_id, 'secret_access_key': secret_access_key, 'label': label },
                 called = called
             )
-    async def set_active_sandbox_mode(self, is_sandbox, called = True):
+    async def set_active_sandbox_mode(self, is_sandbox: bool, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_SET_ACTIVE_SANDBOX_MODE'],
                 { 'is_sandbox': is_sandbox },
                 called = called
             )
-    async def exec_boto3(self, method, parameters, called = True):
+    async def exec_boto3(self, method: str, parameters: dict, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_EXEC_BOTO3'],
                 { 'method': method, 'parameters': parameters },
                 called = called
             )
-    async def expire_hits(self, request_id, hit_ids, called = True):
+    async def expire_hits(self, request_id: str, hit_ids: list[str], called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_HIT_EXPIRE'],
                 { 'request_id': request_id, 'hit_ids': hit_ids },
                 called = called
             )
-    async def delete_hits(self, request_id, hit_ids, called = True):
+    async def delete_hits(self, request_id: str, hit_ids: list[str], called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_HIT_DELETE'],
                 { 'request_id': request_id, 'hit_ids': hit_ids },
                 called = called
             )
-    async def list_hits_for_tutti_hit_batch(self, batch_id, cached, called = True):
+    async def list_hits_for_tutti_hit_batch(self, batch_id: str, cached: bool, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_HIT_LIST_FOR_TUTTI_HIT_BATCH'],
                 { 'batch_id': batch_id, 'cached': cached },
@@ -496,7 +508,7 @@ class MTurkController(Controller):
                 {},
                 called = called
             )
-    async def create_tutti_hit_batch(self, name, project_name, hit_type_params, hit_params, num_hits, called = True):
+    async def create_tutti_hit_batch(self, name: str, project_name: str, hit_type_params: dict, hit_params: dict, num_hits: int, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_TUTTI_HIT_BATCH_CREATE'],
                 {
@@ -508,13 +520,13 @@ class MTurkController(Controller):
                 },
                 called = called
             )
-    async def add_hits_to_tutti_hit_batch(self, batch_id, hit_params, num_hits, called = True):
+    async def add_hits_to_tutti_hit_batch(self, batch_id: str, hit_params: dict, num_hits: int, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_HIT_ADD_FOR_TUTTI_HIT_BATCH'],
                 { 'batch_id': batch_id, 'hit_params': hit_params, 'num_hits': num_hits },
                 called = called
             )
-    async def delete_tutti_hit_batch(self, request_id, batch_id, called = True):
+    async def delete_tutti_hit_batch(self, request_id: str, batch_id: str, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_TUTTI_HIT_BATCH_DELETE'],
                 { 'request_id': request_id, 'batch_id': batch_id },
@@ -526,13 +538,13 @@ class MTurkController(Controller):
                 {},
                 called = called
             )
-    async def list_qualification_types(self, query, only_user_defined, cached, called = True):
+    async def list_qualification_types(self, query: str, only_user_defined: bool, cached: bool, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_QUALIFICATION_TYPE_LIST'],
                 { 'query': query, 'only_user_defined': only_user_defined, 'cached': cached },
                 called = called
             )
-    async def create_qualification_type(self, name, description, auto_granted, qualification_type_status, called = True):
+    async def create_qualification_type(self, name: str, description: str, auto_granted: bool, qualification_type_status: str, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_QUALIFICATION_TYPE_CREATE'],
                 {
@@ -543,7 +555,7 @@ class MTurkController(Controller):
                 },
                 called = called
             )
-    async def delete_qualification_types(self, qualification_type_ids, called = True):
+    async def delete_qualification_types(self, qualification_type_ids: list[str], called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_QUALIFICATION_TYPE_DELETE'],
                 { 'qualification_type_ids': qualification_type_ids },
@@ -555,13 +567,13 @@ class MTurkController(Controller):
                 {},
                 called = called
             )
-    async def notify_workers(self, subject, message_text, worker_ids, called = True):
+    async def notify_workers(self, subject: str, message_text: str, worker_ids: list[str], called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_WORKER_NOTIFY'],
                 { 'subject': subject, 'message_text': message_text, 'worker_ids': worker_ids },
                 called = called
             )
-    async def associate_qualifications_with_workers(self, qualification_type_id, worker_ids, integer_value, send_notification, called = True):
+    async def associate_qualifications_with_workers(self, qualification_type_id: str, worker_ids: list[str], integer_value: int, send_notification: bool, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_WORKER_ASSOCIATE_QUALIFICATIONS'],
                 {
@@ -572,13 +584,13 @@ class MTurkController(Controller):
                 },
                 called = called
             )
-    async def list_assignments_for_tutti_hit_batch(self, batch_id, cached, called = True):
+    async def list_assignments_for_tutti_hit_batch(self, batch_id: str, cached: bool, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_ASSIGNMENT_LIST_FOR_TUTTI_HIT_BATCH'],
                 { 'batch_id': batch_id, 'cached': cached },
                 called = called
             )
-    async def approve_assignments(self, assignment_ids, requester_feedback, override_rejection, called = True):
+    async def approve_assignments(self, assignment_ids: list[str], requester_feedback: str, override_rejection: bool, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_ASSIGNMENT_APPROVE'],
                 {
@@ -588,13 +600,13 @@ class MTurkController(Controller):
                 },
                 called = called
             )
-    async def reject_assignments(self, assignment_ids, requester_feedback, called = True):
+    async def reject_assignments(self, assignment_ids: list[str], requester_feedback: str, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_ASSIGNMENT_REJECT'],
                 { 'assignment_ids': assignment_ids, 'requester_feedback': requester_feedback },
                 called = called
             )
-    async def send_bonus(self, worker_ids, bonus_amount, assignment_ids, reason, called = True):
+    async def send_bonus(self, worker_ids: list[str], bonus_amount: str, assignment_ids: list[str], reason: str, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['MARKETPLACE_MTURK_ASSIGNMENT_SEND_BONUS'],
                 {
