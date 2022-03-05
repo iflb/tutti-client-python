@@ -1,3 +1,0 @@
-# Send / Call
-
-There are two types
