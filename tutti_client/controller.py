@@ -260,6 +260,48 @@ class ResourceController(Controller):
                 called = called
             )
 
+    async def watch_responses_for_project(self, project_name: str, last_watch_id: str = '-', exclusive: bool = True, called = True, **kwargs):
+        return await self._call_or_send(
+                self._duct.EVENT['RESPONSE_WATCH_FOR_PROJECT'],
+                { 'project_name': project_name, 'last_watch_id': last_watch_id, 'exclusive': exclusive },
+                called = called
+            )
+
+    async def watch_responses_for_template(self, project_name: str, template_name: str, last_watch_id: str = '-', exclusive: bool = True, called = True, **kwargs):
+        return await self._call_or_send(
+                self._duct.EVENT['RESPONSE_WATCH_FOR_TEMPLATE'],
+                { 'project_name': project_name, 'template_name': template_name, 'last_watch_id': last_watch_id, 'exclusive': exclusive },
+                called = called
+            )
+
+    async def watch_responses_for_nanotask(self, nanotask_id: str, last_watch_id: str = '-', exclusive: bool = True, called = True, **kwargs):
+        return await self._call_or_send(
+                self._duct.EVENT['RESPONSE_WATCH_FOR_NANOTASK'],
+                { 'nanotask_id': nanotask_id, 'last_watch_id': last_watch_id, 'exclusive': exclusive },
+                called = called
+            )
+
+    async def watch_responses_for_worker(self, worker_id: str, last_watch_id: str = '-', exclusive: bool = True, called = True, **kwargs):
+        return await self._call_or_send(
+                self._duct.EVENT['RESPONSE_WATCH_FOR_WORKER'],
+                { 'worker_id': worker_id, 'last_watch_id': last_watch_id, 'exclusive': exclusive },
+                called = called
+            )
+
+    async def watch_responses_for_automation_parameter_set(self, automation_parameter_set_id: str, last_watch_id: str = '-', exclusive: bool = True, called = True, **kwargs):
+        return await self._call_or_send(
+                self._duct.EVENT['RESPONSE_WATCH_FOR_AUTOMATION_PARAMETER_SET'],
+                { 'automation_parameter_set_id': automation_parameter_set_id, 'last_watch_id': last_watch_id, 'exclusive': exclusive },
+                called = called
+            )
+
+    async def watch_responses_for_platform_parameter_set(self, platform_parameter_set_id: str, last_watch_id: str = '-', exclusive: bool = True, called = True, **kwargs):
+        return await self._call_or_send(
+                self._duct.EVENT['RESPONSE_WATCH_FOR_PLATFORM_PARAMETER_SET'],
+                { 'platform_parameter_set_id': platform_parameter_set_id, 'last_watch_id': last_watch_id, 'exclusive': exclusive },
+                called = called
+            )
+
     async def list_projects_with_responses(self, called = True):
         """Requests a list of project names that collected at least one response record.
         """

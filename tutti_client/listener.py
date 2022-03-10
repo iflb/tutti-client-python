@@ -104,6 +104,18 @@ class ResourceEventListener(DuctEventListener):
                     duct.EVENT['RESPONSE_LIST_FOR_WORKER'],
                 'list_responses_for_work_session':
                     duct.EVENT['RESPONSE_LIST_FOR_WORK_SESSION'],
+                'watch_responses_for_project':
+                    duct.EVENT['RESPONSE_WATCH_FOR_PROJECT'],
+                'watch_responses_for_template':
+                    duct.EVENT['RESPONSE_WATCH_FOR_TEMPLATE'],
+                'watch_responses_for_nanotask':
+                    duct.EVENT['RESPONSE_WATCH_FOR_NANOTASK'],
+                'watch_responses_for_worker':
+                    duct.EVENT['RESPONSE_WATCH_FOR_WORKER'],
+                'watch_responses_for_automation_parameter_set':
+                    duct.EVENT['RESPONSE_WATCH_FOR_AUTOMATION_PARAMETER_SET'],
+                'watch_responses_for_platform_parameter_set':
+                    duct.EVENT['RESPONSE_WATCH_FOR_PLATFORM_PARAMETER_SET'],
                 'list_projects_with_responses':
                     duct.EVENT['RESPONSE_LIST_PROJECTS'],
                 'list_templates_with_responses':
