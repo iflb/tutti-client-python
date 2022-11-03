@@ -477,10 +477,10 @@ class ResourceController(Controller):
                 called = called
             )
 
-    async def delete_automation_parameter_set(self, platform_parameter_set_id: str, called = True):
+    async def delete_automation_parameter_set(self, automation_parameter_set_id: str, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['AUTOMATION_PARAMETER_SET_DELETE'],
-                { 'platform_parameter_set_id': platform_parameter_set_id },
+                { 'automation_parameter_set_id': automation_parameter_set_id },
                 called = called
             )
 
