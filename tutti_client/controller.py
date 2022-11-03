@@ -477,6 +477,13 @@ class ResourceController(Controller):
                 called = called
             )
 
+    async def delete_automation_parameter_set(self, platform_parameter_set_id: str, called = True):
+        return await self._call_or_send(
+                self._duct.EVENT['AUTOMATION_PARAMETER_SET_DELETE'],
+                { 'platform_parameter_set_id': platform_parameter_set_id },
+                called = called
+            )
+
     async def list_automation_parameter_sets(self, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['AUTOMATION_PARAMETER_SET_LIST'],
@@ -484,6 +491,12 @@ class ResourceController(Controller):
                 called = called
             )
 
+    async def get_automation_parameter_set(self, automation_parameter_set_id: str, called = True):
+        return await self._call_or_send(
+                self._duct.EVENT['AUTOMATION_PARAMETER_SET_GET'],
+                { 'automation_parameter_set_id': automation_parameter_set_id },
+                called = called
+            )
 
 class MTurkController(Controller):
     """Controller methods to make requests relevant to Amazon MTurk operations.
