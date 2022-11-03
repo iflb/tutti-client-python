@@ -463,6 +463,13 @@ class ResourceController(Controller):
                 called = called
             )
 
+    async def delete_platform_parameter_set(self, platform_parameter_set_id: str, called = True):
+        return await self._call_or_send(
+                self._duct.EVENT['PLATFORM_PARAMETER_SET_DELETE'],
+                { 'platform_parameter_set_id': platform_parameter_set_id },
+                called = called
+            )
+
     async def get_platform_parameter_set(self, platform_parameter_set_id: str, called = True):
         return await self._call_or_send(
                 self._duct.EVENT['PLATFORM_PARAMETER_SET_GET'],
